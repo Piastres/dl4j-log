@@ -1,0 +1,91 @@
+Loading org.deeplearning4j.transferlearning.vgg16...
+
+
+20:34:11,994 INFO  ~ Using cached model at C:\Users\Piastres\.deeplearning4j\vgg16_dl4j_inference.zip
+20:34:11,994 INFO  ~ Verifying download...
+20:34:13,939 INFO  ~ Checksum local is 3501732770, expecting 3501732770
+20:34:14,147 INFO  ~ Loaded [CpuBackend] backend
+20:34:16,766 INFO  ~ Number of threads used for NativeOps: 2
+20:34:17,725 INFO  ~ Number of threads used for BLAS: 2
+20:34:17,740 INFO  ~ Backend used: [CPU]; OS: [Windows 8.1]
+20:34:17,740 INFO  ~ Cores: [2]; Memory: [1,8GB];
+20:34:17,740 INFO  ~ Blas vendor: [OPENBLAS]
+20:34:51,877 INFO  ~ Starting ComputationGraph with WorkspaceModes set to [training: NONE; inference: SINGLE]
+20:34:52,900 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (ConvolutionLayer)         3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (ConvolutionLayer)         64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (SubsamplingLayer)          -,-       0           -                                       [block1_conv2]                
+block2_conv1 (ConvolutionLayer)         64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (ConvolutionLayer)         128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (SubsamplingLayer)          -,-       0           -                                       [block2_conv2]                
+block3_conv1 (ConvolutionLayer)         128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (SubsamplingLayer)          -,-       0           -                                       [block3_conv3]                
+block4_conv1 (ConvolutionLayer)         256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (SubsamplingLayer)          -,-       0           -                                       [block4_conv3]                
+block5_conv1 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (SubsamplingLayer)          -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (DenseLayer)                        25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (DenseLayer)                        4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (DenseLayer)                4096,1000 4097000     W:{4096,1000}, b:{1,1000}               [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  138357544
+        Trainable Parameters:  138357544
+           Frozen Parameters:  0
+==========================================================================================================================================================================================================================================================
+
+20:34:59,994 INFO  ~ Gradients for the frozen layer are not set and will therefore will not be updated.Warning will be issued only once per instance
+20:35:00,161 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (Frozen ConvolutionLayer)  3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (Frozen ConvolutionLayer)  64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block1_conv2]                
+block2_conv1 (Frozen ConvolutionLayer)  64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (Frozen ConvolutionLayer)  128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block2_conv2]                
+block3_conv1 (Frozen ConvolutionLayer)  128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block3_conv3]                
+block4_conv1 (Frozen ConvolutionLayer)  256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block4_conv3]                
+block5_conv1 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (Frozen DenseLayer)                 25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (Frozen DenseLayer)                 4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (OutputLayer)               4096,96   393312      W:{4096,96}, b:{1,96}                   [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  134653856
+        Trainable Parameters:  393312
+           Frozen Parameters:  134260544
+==========================================================================================================================================================================================================================================================
+
+20:35:00,169 INFO  ~ Downloading the symbol dataset from https://vk.com/doc108308742_467339969...
+20:35:10,982 INFO  ~ Data set download completed
+20:35:11,442 INFO  ~ Size of testData58
+20:35:11,442 INFO  ~ TRAINDATA 230
+20:35:11,449 INFO  ~ Calculating labels...
+20:35:11,453 INFO  ~ Size of dir 96
+20:35:11,453 INFO  ~ Size of split 230
+20:35:11,470 INFO  ~ TESTDATA 58
+20:35:11,470 INFO  ~ Calculating labels...
+20:35:11,475 INFO  ~ Size of dir 96
+20:35:11,475 INFO  ~ Size of split 58
