@@ -1,0 +1,123 @@
+package org.deeplearning4j.transferlearning.vgg16.dataHelpers;
+
+import org.apache.commons.io.FileUtils;
+import org.datavec.api.io.filters.BalancedPathFilter;
+import org.datavec.api.io.labels.ParentPathLabelGenerator;
+import org.datavec.api.split.FileSplit;
+import org.datavec.api.split.InputSplit;
+import org.datavec.image.loader.BaseImageLoader;
+import org.datavec.image.recordreader.ImageRecordReader;
+import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
+import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.dataset.api.preprocessor.VGG16ImagePreProcessor;
+import org.nd4j.util.ArchiveUtils;
+import org.slf4j.Logger;
+
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Random;
+
+/**
+ * Automatically downloads the dataset from
+ * http://download.tensorflow.org/example_images/flower_photos.tgz
+ * and untar's it to the users home directory
+ * @author susaneraly on 3/9/17.
+ */
+public class SymbolsDataSetIterator {
+
+    private static final String DATA_DIR = new File(System.getProperty("user.home")) + "/dl4jDataDir";
+    //private static final String DATA_URL = "http://download.tensorflow.org/example_images/flower_photos.tgz";
+    //private static final String DATA_URL = "https://drive.google.com/open?id=1u5b0jsRLD8d2aXFrj4YKspgSlfAC1_5p";
+    private static final String DATA_URL = "https://vk.com/doc108308742_467339969";
+    //private static final String FLOWER_DIR = DATA_DIR + "/flower_photos";
+    private static final String FLOWER_DIR = DATA_DIR + "/symbol_photos";
+
+    private static final String [] allowedExtensions = BaseImageLoader.ALLOWED_FORMATS;
+    private static final Random rng  = new Random(13);
+
+    private static final int height = 224;
+    private static final int width = 224;
+    private static final int channels = 3;
+    //private static final int numClasses = 5;
+    private static final int numClasses = 96;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(SymbolsDataSetIterator.class);
+
+    private static ParentPathLabelGenerator labelMaker = new ParentPathLabelGenerator();
+    private static InputSplit trainData,testData;
+    private static int batchSize;
+
+    public static DataSetIterator trainIterator() throws IOException {
+        log.info("TRAINDATA " + String.valueOf(trainData.length()));
+        return makeIterator(trainData);
+
+    }
+
+    public static DataSetIterator testIterator() throws IOException {
+        log.info("TESTDATA " + String.valueOf(testData.length()));
+        return makeIterator(testData);
+
+    }
+
+    public static void setup(int batchSizeArg, int trainPerc) throws IOException {
+        try {
+            downloadAndUntar();
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("IOException : ", e);
+        }
+        batchSize = batchSizeArg;
+        File parentDir = new File(FLOWER_DIR);
+        FileSplit filesInDir = new FileSplit(parentDir, allowedExtensions, rng);
+        BalancedPathFilter pathFilter = new BalancedPathFilter(rng, allowedExtensions, labelMaker);
+        if (trainPerc >= 100) {
+            throw new IllegalArgumentException("Percentage of data set aside for training has to be less than 100%. Test percentage = 100 - training percentage, has to be greater than 0");
+        }
+        //test train split specified as 80% - 20%
+        InputSplit[] filesInDirSplit = filesInDir.sample(pathFilter, trainPerc, 100-trainPerc);
+        trainData = filesInDirSplit[0];
+        testData = filesInDirSplit[1];
+        log.info("Size of testData" + testData.length());
+    }
+
+    private static DataSetIterator makeIterator(InputSplit split) throws IOException {
+        ImageRecordReader recordReader = new ImageRecordReader(height,width,channels,labelMaker);
+        //here adding start
+        log.info("Calculating labels...");
+        File file = new File(FLOWER_DIR);
+        String[] directories = file.list(new FilenameFilter() {
+            @Override
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
+            }
+        });
+        log.info("Size of dir " + Arrays.asList(directories).size());
+        log.info("Size of split " + split.length());
+        //recordReader.setLabels(Arrays.asList(directories));
+        //here adding end
+        recordReader.initialize(split);
+        DataSetIterator iter = new RecordReaderDataSetIterator(recordReader, batchSize, 1, numClasses);
+        iter.setPreProcessor(new VGG16ImagePreProcessor());
+        return iter;
+    }
+
+    public static void downloadAndUntar() throws IOException {
+         File rootFile = new File(DATA_DIR);
+         if (!rootFile.exists()) {
+             rootFile.mkdir();
+         }
+         //File tarFile = new File(DATA_DIR, "flower_photos.tgz");
+         File tarFile = new File(DATA_DIR, "doc108308742_467339969.zip");
+         if (!tarFile.isFile()) {
+             //log.info("Downloading the flower dataset from "+DATA_URL+ "...");
+             log.info("Downloading the symbol dataset from "+DATA_URL+ "...");
+             FileUtils.copyURLToFile(
+                     new URL(DATA_URL),
+                     tarFile);
+         }
+         ArchiveUtils.unzipFileTo(tarFile.getAbsolutePath(), rootFile.getAbsolutePath());
+         log.info("Data set download completed");
+    }
+}
