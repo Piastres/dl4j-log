@@ -1,0 +1,136 @@
+"C:\Program Files\Java\jdk1.8.0_144\bin\java" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\lib\idea_rt.jar=64580:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\bin" -classpath C:\Users\Piastres\AppData\Local\Temp\classpath.jar -Dfile.encoding=UTF-8 org.deeplearning4j.transferlearning.vgg16.EditLastLayerOthersFrozen
+
+16:14:05,823 INFO  ~ 
+
+Loading org.deeplearning4j.transferlearning.vgg16...
+
+
+16:14:05,834 INFO  ~ Using cached model at C:\Users\Piastres\.deeplearning4j\vgg16_dl4j_inference.zip
+16:14:05,834 INFO  ~ Verifying download...
+16:14:08,123 INFO  ~ Checksum local is 3501732770, expecting 3501732770
+16:14:08,305 INFO  ~ Loaded [CpuBackend] backend
+16:14:11,451 INFO  ~ Number of threads used for NativeOps: 2
+16:14:11,843 INFO  ~ Number of threads used for BLAS: 2
+16:14:11,859 INFO  ~ Backend used: [CPU]; OS: [Windows 8.1]
+16:14:11,859 INFO  ~ Cores: [2]; Memory: [1,8GB];
+16:14:11,859 INFO  ~ Blas vendor: [OPENBLAS]
+16:14:46,504 INFO  ~ Starting ComputationGraph with WorkspaceModes set to [training: NONE; inference: SINGLE]
+16:14:47,527 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (ConvolutionLayer)         3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (ConvolutionLayer)         64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (SubsamplingLayer)          -,-       0           -                                       [block1_conv2]                
+block2_conv1 (ConvolutionLayer)         64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (ConvolutionLayer)         128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (SubsamplingLayer)          -,-       0           -                                       [block2_conv2]                
+block3_conv1 (ConvolutionLayer)         128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (SubsamplingLayer)          -,-       0           -                                       [block3_conv3]                
+block4_conv1 (ConvolutionLayer)         256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (SubsamplingLayer)          -,-       0           -                                       [block4_conv3]                
+block5_conv1 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (SubsamplingLayer)          -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (DenseLayer)                        25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (DenseLayer)                        4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (DenseLayer)                4096,1000 4097000     W:{4096,1000}, b:{1,1000}               [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  138357544
+        Trainable Parameters:  138357544
+           Frozen Parameters:  0
+==========================================================================================================================================================================================================================================================
+
+16:14:54,807 INFO  ~ Gradients for the frozen layer are not set and will therefore will not be updated.Warning will be issued only once per instance
+16:14:54,939 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (Frozen ConvolutionLayer)  3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (Frozen ConvolutionLayer)  64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block1_conv2]                
+block2_conv1 (Frozen ConvolutionLayer)  64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (Frozen ConvolutionLayer)  128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block2_conv2]                
+block3_conv1 (Frozen ConvolutionLayer)  128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block3_conv3]                
+block4_conv1 (Frozen ConvolutionLayer)  256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block4_conv3]                
+block5_conv1 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (Frozen DenseLayer)                 25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (Frozen DenseLayer)                 4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (OutputLayer)               4096,96   393312      W:{4096,96}, b:{1,96}                   [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  134653856
+        Trainable Parameters:  393312
+           Frozen Parameters:  134260544
+==========================================================================================================================================================================================================================================================
+
+16:14:54,945 INFO  ~ Downloading the symbol dataset from https://vk.com/doc108308742_467339969...
+16:15:06,892 INFO  ~ Data set download completed
+16:15:07,328 INFO  ~ trainData 230
+16:15:07,328 INFO  ~ testData 58
+16:15:07,328 INFO  ~ TRAINDATA make DataSetIterator
+16:15:07,328 INFO  ~ Calculating labels...
+16:15:07,333 INFO  ~ Size of dir 96
+16:15:07,333 INFO  ~ Size of split 230
+16:15:07,367 INFO  ~ --------------------------------------------------------------
+16:15:07,367 INFO  ~ Labels: [#, %, +, -, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, Delta, E, F, G, Gamma, H, I, J, K, L, Lambda, M, N, O, Omega, P, Phi, Pi, Psi, Q, R, Rightarrow, S, T, Theta, U, V, W, X, Xi, Y, Z, alpha, ast, beta, cap, cdot, chi, cong, cup, div, downarrow, epsilon, eta, geq, int, iota, kappa, leq, mid, mu, neq, not equiv, nu, oplus, otimes, partial, perp, pi 2, pm, rho, setminus, sigma, sim, subset, subseteq, sum, supset, supseteq, tau, times, varepsilon, varkappa, varphi, varrho, zeta, {, }]
+16:15:07,367 INFO  ~ --------------------------------------------------------------
+16:15:07,370 INFO  ~ TESTDATA make DataSetIterator
+16:15:07,370 INFO  ~ Calculating labels...
+16:15:07,374 INFO  ~ Size of dir 96
+16:15:07,374 INFO  ~ Size of split 58
+16:15:07,375 INFO  ~ --------------------------------------------------------------
+16:15:07,375 INFO  ~ Labels: [#, +, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, Delta, E, F, G, Gamma, H, I, K, L, Lambda, M, N, O, P, Psi, R, T, Theta, U, V, W, X, Y, Z, cap, chi, geq, iota, kappa, leq, mid, neq, not equiv, otimes, perp, subseteq, supset, supseteq, tau, varrho, {, }]
+16:15:07,375 INFO  ~ --------------------------------------------------------------
+16:15:09,112 INFO  ~ Eval stats BEFORE fit.....
+16:15:09,119 INFO  ~ 
+
+Warning: 58 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+Warning: 58 classes were never predicted by the model and were excluded from average recall
+Classes excluded from average recall: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57]
+
+==========================Scores========================================
+ # of classes:    58
+ Accuracy:        0,0000
+ Precision:       0,0000	(58 classes excluded from average)
+ Recall:          0,0000	(58 classes excluded from average)
+ F1 Score:        NaN	(58 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 58 classes)
+========================================================================
+
+16:15:09,168 INFO  ~ Frozen layer instance found! Frozen layers are treated as always in test mode. Warning will only be issued once per instance
+Exception in thread "main" java.lang.NullPointerException
+	at org.deeplearning4j.nn.layers.BaseOutputLayer.getLabels2d(BaseOutputLayer.java:441)
+	at org.deeplearning4j.nn.layers.BaseOutputLayer.getGradientsAndDelta(BaseOutputLayer.java:171)
+	at org.deeplearning4j.nn.layers.BaseOutputLayer.backpropGradient(BaseOutputLayer.java:148)
+	at org.deeplearning4j.nn.graph.vertex.impl.LayerVertex.doBackward(LayerVertex.java:154)
+	at org.deeplearning4j.nn.graph.ComputationGraph.calcBackpropGradients(ComputationGraph.java:2012)
+	at org.deeplearning4j.nn.graph.ComputationGraph.computeGradientAndScore(ComputationGraph.java:1357)
+	at org.deeplearning4j.optimize.solvers.BaseOptimizer.gradientAndScore(BaseOptimizer.java:173)
+	at org.deeplearning4j.optimize.solvers.StochasticGradientDescent.optimize(StochasticGradientDescent.java:59)
+	at org.deeplearning4j.optimize.Solver.optimize(Solver.java:53)
+	at org.deeplearning4j.nn.graph.ComputationGraph.fit(ComputationGraph.java:1194)
+	at org.deeplearning4j.nn.graph.ComputationGraph.fit(ComputationGraph.java:1140)
+	at org.deeplearning4j.nn.graph.ComputationGraph.fit(ComputationGraph.java:875)
+	at org.deeplearning4j.transferlearning.vgg16.EditLastLayerOthersFrozen.main(EditLastLayerOthersFrozen.java:96)
+
+Process finished with exit code 1
