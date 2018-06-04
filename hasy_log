@@ -1,0 +1,628 @@
+"C:\Program Files\Java\jdk1.8.0_144\bin\java" -Xmx5120M "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\lib\idea_rt.jar=56304:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\bin" -classpath C:\Users\Piastres\AppData\Local\Temp\classpath.jar -Dfile.encoding=UTF-8 org.deeplearning4j.transferlearning.vgg16.EditLastLayerOthersFrozen
+
+Loading org.deeplearning4j.transferlearning.vgg16...
+
+
+21:03:28,833 INFO  ~ Using cached model at C:\Users\Piastres\.deeplearning4j\vgg16_dl4j_inference.zip
+21:03:28,833 INFO  ~ Verifying download...
+21:04:28,530 INFO  ~ Checksum local is 3501732770, expecting 3501732770
+21:04:28,796 INFO  ~ Loaded [CpuBackend] backend
+21:04:31,127 INFO  ~ Number of threads used for NativeOps: 2
+21:04:31,786 INFO  ~ Number of threads used for BLAS: 2
+21:04:31,897 INFO  ~ Backend used: [CPU]; OS: [Windows 8.1]
+21:04:31,897 INFO  ~ Cores: [2]; Memory: [4,4GB];
+21:04:31,897 INFO  ~ Blas vendor: [OPENBLAS]
+21:04:45,240 INFO  ~ Starting ComputationGraph with WorkspaceModes set to [training: NONE; inference: SINGLE]
+21:04:46,851 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (ConvolutionLayer)         3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (ConvolutionLayer)         64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (SubsamplingLayer)          -,-       0           -                                       [block1_conv2]                
+block2_conv1 (ConvolutionLayer)         64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (ConvolutionLayer)         128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (SubsamplingLayer)          -,-       0           -                                       [block2_conv2]                
+block3_conv1 (ConvolutionLayer)         128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (SubsamplingLayer)          -,-       0           -                                       [block3_conv3]                
+block4_conv1 (ConvolutionLayer)         256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (SubsamplingLayer)          -,-       0           -                                       [block4_conv3]                
+block5_conv1 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (SubsamplingLayer)          -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (DenseLayer)                        25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (DenseLayer)                        4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (DenseLayer)                4096,1000 4097000     W:{4096,1000}, b:{1,1000}               [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  138357544
+        Trainable Parameters:  138357544
+           Frozen Parameters:  0
+==========================================================================================================================================================================================================================================================
+
+21:04:54,133 INFO  ~ Gradients for the frozen layer are not set and will therefore will not be updated.Warning will be issued only once per instance
+21:04:54,265 INFO  ~ 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (Frozen ConvolutionLayer)  3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (Frozen ConvolutionLayer)  64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block1_conv2]                
+block2_conv1 (Frozen ConvolutionLayer)  64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (Frozen ConvolutionLayer)  128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block2_conv2]                
+block3_conv1 (Frozen ConvolutionLayer)  128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block3_conv3]                
+block4_conv1 (Frozen ConvolutionLayer)  256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block4_conv3]                
+block5_conv1 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (Frozen DenseLayer)                 25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (Frozen DenseLayer)                 4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (OutputLayer)               4096,140  573580      W:{4096,140}, b:{1,140}                 [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  134834124
+        Trainable Parameters:  573580
+           Frozen Parameters:  134260544
+==========================================================================================================================================================================================================================================================
+
+21:04:59,122 INFO  ~ numExamples: 2550
+21:04:59,128 INFO  ~ numClasses: 140
+21:04:59,210 INFO  ~ trainData 1344
+21:04:59,210 INFO  ~ testData 336
+21:39:37,015 INFO  ~ Eval stats BEFORE fit.....
+21:39:37,924 INFO  ~ 
+Predictions labeled as % classified by model as 5: 1 times
+Predictions labeled as % classified by model as O: 1 times
+Predictions labeled as % classified by model as vark: 1 times
+Predictions labeled as ( classified by model as mu: 1 times
+Predictions labeled as ( classified by model as rho: 2 times
+Predictions labeled as ) classified by model as 3: 1 times
+Predictions labeled as ) classified by model as varn: 1 times
+Predictions labeled as + classified by model as mu: 1 times
+Predictions labeled as + classified by model as nu: 1 times
+Predictions labeled as , classified by model as slash: 1 times
+Predictions labeled as , classified by model as vark: 1 times
+Predictions labeled as - classified by model as Gamma: 3 times
+Predictions labeled as 0 classified by model as ,: 1 times
+Predictions labeled as 0 classified by model as {: 1 times
+Predictions labeled as 1 classified by model as 3: 1 times
+Predictions labeled as 1 classified by model as varn: 1 times
+Predictions labeled as 2 classified by model as 3: 1 times
+Predictions labeled as 2 classified by model as varw: 2 times
+Predictions labeled as 3 classified by model as vare: 1 times
+Predictions labeled as 3 classified by model as vartheta: 1 times
+Predictions labeled as 3 classified by model as varw: 1 times
+Predictions labeled as 4 classified by model as nu: 2 times
+Predictions labeled as 5 classified by model as 3: 1 times
+Predictions labeled as 5 classified by model as in: 1 times
+Predictions labeled as 6 classified by model as 5: 1 times
+Predictions labeled as 6 classified by model as nu: 1 times
+Predictions labeled as 6 classified by model as vare: 1 times
+Predictions labeled as 7 classified by model as 3: 1 times
+Predictions labeled as 7 classified by model as varc: 1 times
+Predictions labeled as 8 classified by model as 5: 2 times
+Predictions labeled as 9 classified by model as ,: 1 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as varh: 1 times
+Predictions labeled as = classified by model as vark: 2 times
+Predictions labeled as = classified by model as varn: 1 times
+Predictions labeled as A classified by model as 3: 1 times
+Predictions labeled as A classified by model as zeta: 1 times
+Predictions labeled as B classified by model as ,: 1 times
+Predictions labeled as B classified by model as 5: 2 times
+Predictions labeled as C classified by model as ,: 1 times
+Predictions labeled as C classified by model as 3: 1 times
+Predictions labeled as C classified by model as O: 1 times
+Predictions labeled as D classified by model as in: 2 times
+Predictions labeled as Delta classified by model as ,: 1 times
+Predictions labeled as Delta classified by model as O: 1 times
+Predictions labeled as E classified by model as ,: 1 times
+Predictions labeled as E classified by model as in: 1 times
+Predictions labeled as F classified by model as leq: 1 times
+Predictions labeled as F classified by model as nu: 1 times
+Predictions labeled as G classified by model as O: 1 times
+Predictions labeled as G classified by model as vare: 1 times
+Predictions labeled as Gamma classified by model as 3: 1 times
+Predictions labeled as Gamma classified by model as Gamma: 1 times
+Predictions labeled as Gamma classified by model as emptyset: 1 times
+Predictions labeled as H classified by model as ,: 2 times
+Predictions labeled as I classified by model as emptyset: 1 times
+Predictions labeled as I classified by model as in: 1 times
+Predictions labeled as J classified by model as 3: 1 times
+Predictions labeled as J classified by model as in: 1 times
+Predictions labeled as K classified by model as ,: 1 times
+Predictions labeled as K classified by model as in: 1 times
+Predictions labeled as K classified by model as vartheta: 1 times
+Predictions labeled as L classified by model as emptyset: 1 times
+Predictions labeled as L classified by model as in: 1 times
+Predictions labeled as Lambda classified by model as J: 1 times
+Predictions labeled as Lambda classified by model as varc: 1 times
+Predictions labeled as Lambda classified by model as varw: 1 times
+Predictions labeled as M classified by model as ,: 1 times
+Predictions labeled as M classified by model as O: 1 times
+Predictions labeled as N classified by model as H: 1 times
+Predictions labeled as N classified by model as emptyset: 1 times
+Predictions labeled as N classified by model as vark: 1 times
+Predictions labeled as O classified by model as 5: 1 times
+Predictions labeled as O classified by model as varw: 1 times
+Predictions labeled as Omega classified by model as 5: 1 times
+Predictions labeled as Omega classified by model as vark: 1 times
+Predictions labeled as Omega classified by model as varw: 1 times
+Predictions labeled as P classified by model as 5: 1 times
+Predictions labeled as P classified by model as times: 1 times
+Predictions labeled as Phi classified by model as 3: 1 times
+Predictions labeled as Phi classified by model as in: 1 times
+Predictions labeled as Pi classified by model as 5: 3 times
+Predictions labeled as Psi classified by model as emptyset: 1 times
+Predictions labeled as Psi classified by model as nu: 1 times
+Predictions labeled as Q classified by model as ,: 1 times
+Predictions labeled as Q classified by model as varw: 1 times
+Predictions labeled as R classified by model as H: 1 times
+Predictions labeled as R classified by model as vark: 1 times
+Predictions labeled as Rightarrow classified by model as ,: 1 times
+Predictions labeled as Rightarrow classified by model as emptyset: 1 times
+Predictions labeled as Rightarrow classified by model as in: 1 times
+Predictions labeled as S classified by model as 5: 2 times
+Predictions labeled as S classified by model as varkappa: 1 times
+Predictions labeled as T classified by model as 3: 1 times
+Predictions labeled as T classified by model as in: 2 times
+Predictions labeled as Theta classified by model as ,: 1 times
+Predictions labeled as Theta classified by model as rho: 1 times
+Predictions labeled as Theta classified by model as vari: 1 times
+Predictions labeled as U classified by model as 3: 1 times
+Predictions labeled as U classified by model as 5: 2 times
+Predictions labeled as V classified by model as ,: 1 times
+Predictions labeled as V classified by model as div: 1 times
+Predictions labeled as W classified by model as O: 1 times
+Predictions labeled as W classified by model as nu: 1 times
+Predictions labeled as X classified by model as approx: 1 times
+Predictions labeled as X classified by model as in: 2 times
+Predictions labeled as Xi classified by model as 8: 1 times
+Predictions labeled as Xi classified by model as in: 1 times
+Predictions labeled as Xi classified by model as varkappa: 1 times
+Predictions labeled as Y classified by model as 3: 1 times
+Predictions labeled as Y classified by model as nu: 1 times
+Predictions labeled as Z classified by model as in: 1 times
+Predictions labeled as Z classified by model as times: 1 times
+Predictions labeled as [ classified by model as rho: 1 times
+Predictions labeled as [ classified by model as vark: 2 times
+Predictions labeled as ] classified by model as nu: 1 times
+Predictions labeled as ] classified by model as varn: 1 times
+Predictions labeled as alpha classified by model as 3: 2 times
+Predictions labeled as approx classified by model as R: 1 times
+Predictions labeled as approx classified by model as rho: 1 times
+Predictions labeled as ast classified by model as rho: 1 times
+Predictions labeled as ast classified by model as vardelta: 1 times
+Predictions labeled as beta classified by model as ,: 1 times
+Predictions labeled as beta classified by model as in: 1 times
+Predictions labeled as cap classified by model as supset: 1 times
+Predictions labeled as cap classified by model as varw: 1 times
+Predictions labeled as cdot classified by model as vark: 2 times
+Predictions labeled as chi classified by model as ,: 1 times
+Predictions labeled as chi classified by model as vare: 1 times
+Predictions labeled as chi classified by model as varw: 1 times
+Predictions labeled as cong classified by model as 3: 3 times
+Predictions labeled as cup classified by model as approx: 1 times
+Predictions labeled as cup classified by model as times: 1 times
+Predictions labeled as cup classified by model as varw: 1 times
+Predictions labeled as div classified by model as Gamma: 1 times
+Predictions labeled as div classified by model as mu: 1 times
+Predictions labeled as downarrow classified by model as vark: 1 times
+Predictions labeled as downarrow classified by model as varn: 1 times
+Predictions labeled as emptyset classified by model as nu: 1 times
+Predictions labeled as emptyset classified by model as vark: 1 times
+Predictions labeled as epsilon classified by model as 5: 1 times
+Predictions labeled as epsilon classified by model as varw: 1 times
+Predictions labeled as eta classified by model as 3: 1 times
+Predictions labeled as eta classified by model as Pi: 1 times
+Predictions labeled as exists classified by model as Gamma: 1 times
+Predictions labeled as exists classified by model as rho: 1 times
+Predictions labeled as exists classified by model as varh: 1 times
+Predictions labeled as forall classified by model as ,: 1 times
+Predictions labeled as forall classified by model as O: 2 times
+Predictions labeled as geq classified by model as vartheta: 2 times
+Predictions labeled as geq classified by model as varw: 1 times
+Predictions labeled as in classified by model as Gamma: 1 times
+Predictions labeled as in classified by model as emptyset: 1 times
+Predictions labeled as in classified by model as mu: 1 times
+Predictions labeled as infty classified by model as varw: 2 times
+Predictions labeled as int classified by model as ,: 1 times
+Predictions labeled as int classified by model as beta: 1 times
+Predictions labeled as int classified by model as times: 1 times
+Predictions labeled as iota classified by model as O: 1 times
+Predictions labeled as iota classified by model as varw: 1 times
+Predictions labeled as kappa classified by model as 5: 1 times
+Predictions labeled as kappa classified by model as varw: 1 times
+Predictions labeled as large classified by model as chi: 1 times
+Predictions labeled as large classified by model as varw: 2 times
+Predictions labeled as leq classified by model as -: 1 times
+Predictions labeled as leq classified by model as emptyset: 1 times
+Predictions labeled as leq classified by model as vartheta: 1 times
+Predictions labeled as less classified by model as 5: 1 times
+Predictions labeled as less classified by model as emptyset: 1 times
+Predictions labeled as mid classified by model as 3: 1 times
+Predictions labeled as mid classified by model as vara: 1 times
+Predictions labeled as mu classified by model as in: 1 times
+Predictions labeled as mu classified by model as vark: 1 times
+Predictions labeled as nabla classified by model as in: 1 times
+Predictions labeled as nabla classified by model as vark: 1 times
+Predictions labeled as nabla classified by model as varw: 1 times
+Predictions labeled as neq classified by model as 3: 1 times
+Predictions labeled as neq classified by model as rho: 1 times
+Predictions labeled as ni classified by model as R: 1 times
+Predictions labeled as ni classified by model as vare: 1 times
+Predictions labeled as ni classified by model as varh: 1 times
+Predictions labeled as nu classified by model as emptyset: 1 times
+Predictions labeled as nu classified by model as vark: 1 times
+Predictions labeled as partial classified by model as O: 1 times
+Predictions labeled as partial classified by model as rho: 1 times
+Predictions labeled as perp classified by model as vara: 1 times
+Predictions labeled as perp classified by model as vark: 1 times
+Predictions labeled as pm classified by model as nu: 2 times
+Predictions labeled as pm classified by model as vark: 1 times
+Predictions labeled as rho classified by model as ,: 1 times
+Predictions labeled as rho classified by model as in: 2 times
+Predictions labeled as setminus classified by model as ,: 1 times
+Predictions labeled as setminus classified by model as varn: 1 times
+Predictions labeled as sigma classified by model as 5: 1 times
+Predictions labeled as sigma classified by model as nu: 1 times
+Predictions labeled as sim classified by model as 3: 2 times
+Predictions labeled as sim classified by model as vare: 1 times
+Predictions labeled as slash classified by model as emptyset: 1 times
+Predictions labeled as slash classified by model as vark: 1 times
+Predictions labeled as slash classified by model as varn: 1 times
+Predictions labeled as sqrt classified by model as ,: 1 times
+Predictions labeled as sqrt classified by model as emptyset: 1 times
+Predictions labeled as subset classified by model as 5: 1 times
+Predictions labeled as subset classified by model as emptyset: 1 times
+Predictions labeled as subset classified by model as varn: 1 times
+Predictions labeled as subseteq classified by model as in: 2 times
+Predictions labeled as supset classified by model as 5: 1 times
+Predictions labeled as supset classified by model as emptyset: 1 times
+Predictions labeled as supset classified by model as in: 1 times
+Predictions labeled as supseteq classified by model as emptyset: 1 times
+Predictions labeled as supseteq classified by model as varn: 1 times
+Predictions labeled as tau classified by model as Gamma: 1 times
+Predictions labeled as tau classified by model as nu: 1 times
+Predictions labeled as times classified by model as O: 2 times
+Predictions labeled as times classified by model as nu: 1 times
+Predictions labeled as vara classified by model as 3: 2 times
+Predictions labeled as varb classified by model as 3: 1 times
+Predictions labeled as varb classified by model as {: 1 times
+Predictions labeled as varc classified by model as 3: 2 times
+Predictions labeled as varc classified by model as 5: 1 times
+Predictions labeled as vard classified by model as 3: 1 times
+Predictions labeled as vard classified by model as H: 1 times
+Predictions labeled as vard classified by model as in: 1 times
+Predictions labeled as vardelta classified by model as ,: 1 times
+Predictions labeled as vardelta classified by model as 5: 1 times
+Predictions labeled as vare classified by model as 5: 1 times
+Predictions labeled as vare classified by model as vare: 1 times
+Predictions labeled as varepsilon classified by model as R: 1 times
+Predictions labeled as varepsilon classified by model as varw: 1 times
+Predictions labeled as varf classified by model as 3: 1 times
+Predictions labeled as varf classified by model as rho: 1 times
+Predictions labeled as varg classified by model as 5: 2 times
+Predictions labeled as vargamma classified by model as 3: 1 times
+Predictions labeled as vargamma classified by model as varw: 1 times
+Predictions labeled as varh classified by model as 3: 2 times
+Predictions labeled as varh classified by model as rho: 1 times
+Predictions labeled as vari classified by model as 3: 1 times
+Predictions labeled as vari classified by model as 5: 1 times
+Predictions labeled as varj classified by model as in: 1 times
+Predictions labeled as varj classified by model as varkappa: 1 times
+Predictions labeled as vark classified by model as ,: 1 times
+Predictions labeled as vark classified by model as 3: 1 times
+Predictions labeled as vark classified by model as in: 1 times
+Predictions labeled as varkappa classified by model as ,: 1 times
+Predictions labeled as varkappa classified by model as varw: 1 times
+Predictions labeled as varl classified by model as Gamma: 1 times
+Predictions labeled as varl classified by model as vark: 1 times
+Predictions labeled as varlambda classified by model as exists: 1 times
+Predictions labeled as varlambda classified by model as in: 1 times
+Predictions labeled as varlambda classified by model as varw: 1 times
+Predictions labeled as varm classified by model as 3: 1 times
+Predictions labeled as varm classified by model as rho: 1 times
+Predictions labeled as varn classified by model as 3: 1 times
+Predictions labeled as varn classified by model as {: 1 times
+Predictions labeled as varo classified by model as 3: 1 times
+Predictions labeled as varo classified by model as 5: 2 times
+Predictions labeled as varomega classified by model as 5: 1 times
+Predictions labeled as varomega classified by model as varn: 1 times
+Predictions labeled as varp classified by model as 5: 2 times
+Predictions labeled as varphi classified by model as 3: 2 times
+Predictions labeled as varphi classified by model as 5: 1 times
+Predictions labeled as varpi classified by model as 3: 2 times
+Predictions labeled as varq classified by model as in: 2 times
+Predictions labeled as varq classified by model as vara: 1 times
+Predictions labeled as varr classified by model as 3: 2 times
+Predictions labeled as varr classified by model as rho: 1 times
+Predictions labeled as vars classified by model as 3: 1 times
+Predictions labeled as vars classified by model as 5: 1 times
+Predictions labeled as vart classified by model as 3: 2 times
+Predictions labeled as vartheta classified by model as ,: 1 times
+Predictions labeled as vartheta classified by model as 3: 1 times
+Predictions labeled as vartheta classified by model as vark: 1 times
+Predictions labeled as vartheta_2 classified by model as 5: 1 times
+Predictions labeled as vartheta_2 classified by model as vartheta: 1 times
+Predictions labeled as varu classified by model as 3: 1 times
+Predictions labeled as varu classified by model as 5: 1 times
+Predictions labeled as varu classified by model as cdot: 1 times
+Predictions labeled as varw classified by model as rho: 2 times
+Predictions labeled as varx classified by model as 3: 1 times
+Predictions labeled as varx classified by model as in: 1 times
+Predictions labeled as varx classified by model as rho: 1 times
+Predictions labeled as varxi classified by model as 5: 1 times
+Predictions labeled as varxi classified by model as varh: 1 times
+Predictions labeled as vary classified by model as 3: 1 times
+Predictions labeled as vary classified by model as 5: 1 times
+Predictions labeled as varz classified by model as 3: 1 times
+Predictions labeled as varz classified by model as in: 1 times
+Predictions labeled as varz classified by model as rho: 1 times
+Predictions labeled as zeta classified by model as vark: 1 times
+Predictions labeled as zeta classified by model as varw: 1 times
+Predictions labeled as { classified by model as 5: 1 times
+Predictions labeled as { classified by model as varw: 1 times
+Predictions labeled as } classified by model as times: 1 times
+Predictions labeled as } classified by model as varw: 1 times
+
+Warning: 101 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 1, 2, 3, 6, 7, 8, 10, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 27, 29, 30, 31, 32, 33, 35, 36, 37, 39, 40, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 57, 59, 62, 63, 65, 67, 68, 70, 71, 73, 74, 75, 76, 77, 79, 80, 82, 83, 84, 86, 87, 88, 90, 91, 92, 94, 95, 96, 98, 99, 102, 104, 107, 108, 109, 110, 113, 116, 117, 118, 120, 121, 122, 123, 124, 125, 126, 127, 128, 130, 131, 133, 134, 135, 136, 139]
+
+==========================Scores========================================
+ # of classes:    140
+ Accuracy:        0,0060
+ Precision:       0,0065	(101 classes excluded from average)
+ Recall:          0,0060
+ F1 Score:        0,0100	(101 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 140 classes)
+========================================================================
+
+21:39:38,706 INFO  ~ Frozen layer instance found! Frozen layers are treated as always in test mode. Warning will only be issued once per instance
+21:41:34,129 INFO  ~ Evaluate model at iter 0 ....
+22:21:16,275 INFO  ~ 
+Predictions labeled as % classified by model as T: 1 times
+Predictions labeled as % classified by model as ni: 2 times
+Predictions labeled as ( classified by model as N: 1 times
+Predictions labeled as ( classified by model as T: 2 times
+Predictions labeled as ) classified by model as varx: 2 times
+Predictions labeled as + classified by model as ni: 1 times
+Predictions labeled as + classified by model as pm: 1 times
+Predictions labeled as , classified by model as T: 1 times
+Predictions labeled as , classified by model as ni: 1 times
+Predictions labeled as - classified by model as ni: 3 times
+Predictions labeled as 0 classified by model as ni: 2 times
+Predictions labeled as 1 classified by model as ni: 2 times
+Predictions labeled as 2 classified by model as T: 1 times
+Predictions labeled as 2 classified by model as ni: 2 times
+Predictions labeled as 3 classified by model as T: 1 times
+Predictions labeled as 3 classified by model as ni: 2 times
+Predictions labeled as 4 classified by model as T: 1 times
+Predictions labeled as 4 classified by model as ni: 1 times
+Predictions labeled as 5 classified by model as varu: 1 times
+Predictions labeled as 5 classified by model as varx: 1 times
+Predictions labeled as 6 classified by model as T: 1 times
+Predictions labeled as 6 classified by model as varx: 2 times
+Predictions labeled as 7 classified by model as T: 2 times
+Predictions labeled as 8 classified by model as varx: 2 times
+Predictions labeled as 9 classified by model as T: 2 times
+Predictions labeled as 9 classified by model as varx: 1 times
+Predictions labeled as = classified by model as T: 1 times
+Predictions labeled as = classified by model as ni: 2 times
+Predictions labeled as A classified by model as ni: 2 times
+Predictions labeled as B classified by model as T: 2 times
+Predictions labeled as B classified by model as ni: 1 times
+Predictions labeled as C classified by model as ni: 1 times
+Predictions labeled as C classified by model as varx: 2 times
+Predictions labeled as D classified by model as T: 1 times
+Predictions labeled as D classified by model as varx: 1 times
+Predictions labeled as Delta classified by model as T: 1 times
+Predictions labeled as Delta classified by model as ni: 1 times
+Predictions labeled as E classified by model as T: 2 times
+Predictions labeled as F classified by model as T: 2 times
+Predictions labeled as G classified by model as ni: 2 times
+Predictions labeled as Gamma classified by model as ni: 2 times
+Predictions labeled as H classified by model as T: 1 times
+Predictions labeled as H classified by model as vark: 1 times
+Predictions labeled as I classified by model as T: 2 times
+Predictions labeled as J classified by model as vark: 1 times
+Predictions labeled as J classified by model as varx: 1 times
+Predictions labeled as K classified by model as T: 2 times
+Predictions labeled as K classified by model as ni: 1 times
+Predictions labeled as L classified by model as T: 1 times
+Predictions labeled as L classified by model as ni: 1 times
+Predictions labeled as Lambda classified by model as ni: 3 times
+Predictions labeled as M classified by model as T: 1 times
+Predictions labeled as M classified by model as ni: 1 times
+Predictions labeled as N classified by model as T: 1 times
+Predictions labeled as N classified by model as ni: 1 times
+Predictions labeled as O classified by model as ni: 1 times
+Predictions labeled as O classified by model as varx: 1 times
+Predictions labeled as Omega classified by model as T: 2 times
+Predictions labeled as Omega classified by model as varx: 1 times
+Predictions labeled as P classified by model as ni: 1 times
+Predictions labeled as P classified by model as varx: 1 times
+Predictions labeled as Phi classified by model as T: 2 times
+Predictions labeled as Pi classified by model as varu: 1 times
+Predictions labeled as Pi classified by model as varx: 2 times
+Predictions labeled as Psi classified by model as T: 1 times
+Predictions labeled as Psi classified by model as ni: 1 times
+Predictions labeled as Q classified by model as ni: 2 times
+Predictions labeled as R classified by model as T: 1 times
+Predictions labeled as R classified by model as ni: 1 times
+Predictions labeled as Rightarrow classified by model as ni: 3 times
+Predictions labeled as S classified by model as varx: 3 times
+Predictions labeled as T classified by model as T: 2 times
+Predictions labeled as Theta classified by model as ni: 1 times
+Predictions labeled as Theta classified by model as varx: 2 times
+Predictions labeled as U classified by model as T: 1 times
+Predictions labeled as U classified by model as ni: 1 times
+Predictions labeled as U classified by model as varx: 1 times
+Predictions labeled as V classified by model as T: 2 times
+Predictions labeled as W classified by model as N: 1 times
+Predictions labeled as W classified by model as varu: 1 times
+Predictions labeled as X classified by model as T: 2 times
+Predictions labeled as X classified by model as ni: 1 times
+Predictions labeled as Xi classified by model as T: 3 times
+Predictions labeled as Y classified by model as T: 2 times
+Predictions labeled as Z classified by model as ni: 2 times
+Predictions labeled as [ classified by model as ni: 2 times
+Predictions labeled as [ classified by model as vark: 1 times
+Predictions labeled as ] classified by model as ni: 2 times
+Predictions labeled as alpha classified by model as varx: 2 times
+Predictions labeled as approx classified by model as ni: 2 times
+Predictions labeled as ast classified by model as ni: 1 times
+Predictions labeled as ast classified by model as varu: 1 times
+Predictions labeled as beta classified by model as T: 1 times
+Predictions labeled as beta classified by model as varx: 1 times
+Predictions labeled as cap classified by model as T: 1 times
+Predictions labeled as cap classified by model as ni: 1 times
+Predictions labeled as cdot classified by model as ni: 2 times
+Predictions labeled as chi classified by model as T: 1 times
+Predictions labeled as chi classified by model as ni: 1 times
+Predictions labeled as chi classified by model as varx: 1 times
+Predictions labeled as cong classified by model as ni: 1 times
+Predictions labeled as cong classified by model as varx: 2 times
+Predictions labeled as cup classified by model as ni: 3 times
+Predictions labeled as div classified by model as ni: 2 times
+Predictions labeled as downarrow classified by model as ni: 2 times
+Predictions labeled as emptyset classified by model as ni: 1 times
+Predictions labeled as emptyset classified by model as varx: 1 times
+Predictions labeled as epsilon classified by model as ni: 2 times
+Predictions labeled as eta classified by model as varx: 2 times
+Predictions labeled as exists classified by model as ni: 3 times
+Predictions labeled as forall classified by model as ni: 3 times
+Predictions labeled as geq classified by model as T: 2 times
+Predictions labeled as geq classified by model as ni: 1 times
+Predictions labeled as in classified by model as ni: 3 times
+Predictions labeled as infty classified by model as ni: 2 times
+Predictions labeled as int classified by model as ni: 2 times
+Predictions labeled as int classified by model as varx: 1 times
+Predictions labeled as iota classified by model as ni: 2 times
+Predictions labeled as kappa classified by model as ni: 2 times
+Predictions labeled as large classified by model as ni: 3 times
+Predictions labeled as leq classified by model as T: 1 times
+Predictions labeled as leq classified by model as ni: 2 times
+Predictions labeled as less classified by model as ni: 2 times
+Predictions labeled as mid classified by model as Gamma: 1 times
+Predictions labeled as mid classified by model as T: 1 times
+Predictions labeled as mu classified by model as T: 1 times
+Predictions labeled as mu classified by model as varx: 1 times
+Predictions labeled as nabla classified by model as N: 1 times
+Predictions labeled as nabla classified by model as ni: 2 times
+Predictions labeled as neq classified by model as N: 1 times
+Predictions labeled as neq classified by model as ni: 1 times
+Predictions labeled as ni classified by model as ni: 2 times
+Predictions labeled as nu classified by model as ni: 1 times
+Predictions labeled as nu classified by model as varu: 1 times
+Predictions labeled as partial classified by model as T: 1 times
+Predictions labeled as partial classified by model as varx: 1 times
+Predictions labeled as perp classified by model as ni: 1 times
+Predictions labeled as perp classified by model as varu: 1 times
+Predictions labeled as pm classified by model as N: 2 times
+Predictions labeled as rho classified by model as ni: 2 times
+Predictions labeled as rho classified by model as varx: 1 times
+Predictions labeled as setminus classified by model as T: 1 times
+Predictions labeled as setminus classified by model as ni: 1 times
+Predictions labeled as sigma classified by model as ni: 1 times
+Predictions labeled as sigma classified by model as varu: 1 times
+Predictions labeled as sim classified by model as ni: 2 times
+Predictions labeled as sim classified by model as varx: 1 times
+Predictions labeled as slash classified by model as ni: 3 times
+Predictions labeled as sqrt classified by model as ni: 2 times
+Predictions labeled as subset classified by model as ni: 1 times
+Predictions labeled as subset classified by model as varx: 2 times
+Predictions labeled as subseteq classified by model as T: 2 times
+Predictions labeled as supset classified by model as ni: 2 times
+Predictions labeled as supset classified by model as varu: 1 times
+Predictions labeled as supseteq classified by model as ni: 2 times
+Predictions labeled as tau classified by model as ni: 2 times
+Predictions labeled as times classified by model as T: 2 times
+Predictions labeled as times classified by model as ni: 1 times
+Predictions labeled as vara classified by model as varx: 2 times
+Predictions labeled as varb classified by model as varx: 2 times
+Predictions labeled as varc classified by model as varx: 3 times
+Predictions labeled as vard classified by model as varu: 1 times
+Predictions labeled as vard classified by model as varx: 2 times
+Predictions labeled as vardelta classified by model as ni: 1 times
+Predictions labeled as vardelta classified by model as varu: 1 times
+Predictions labeled as vare classified by model as varx: 2 times
+Predictions labeled as varepsilon classified by model as ni: 1 times
+Predictions labeled as varepsilon classified by model as varx: 1 times
+Predictions labeled as varf classified by model as varx: 2 times
+Predictions labeled as varg classified by model as varx: 2 times
+Predictions labeled as vargamma classified by model as ni: 1 times
+Predictions labeled as vargamma classified by model as varx: 1 times
+Predictions labeled as varh classified by model as varu: 1 times
+Predictions labeled as varh classified by model as varx: 2 times
+Predictions labeled as vari classified by model as vark: 1 times
+Predictions labeled as vari classified by model as varx: 1 times
+Predictions labeled as varj classified by model as vark: 1 times
+Predictions labeled as varj classified by model as varx: 1 times
+Predictions labeled as vark classified by model as vark: 1 times
+Predictions labeled as vark classified by model as varx: 1 times
+Predictions labeled as varkappa classified by model as T: 1 times
+Predictions labeled as varkappa classified by model as ni: 1 times
+Predictions labeled as varl classified by model as T: 1 times
+Predictions labeled as varl classified by model as varx: 1 times
+Predictions labeled as varlambda classified by model as ni: 1 times
+Predictions labeled as varlambda classified by model as varx: 2 times
+Predictions labeled as varm classified by model as varu: 1 times
+Predictions labeled as varm classified by model as varx: 1 times
+Predictions labeled as varn classified by model as varu: 2 times
+Predictions labeled as varo classified by model as varu: 1 times
+Predictions labeled as varo classified by model as varx: 2 times
+Predictions labeled as varomega classified by model as ni: 2 times
+Predictions labeled as varp classified by model as varx: 2 times
+Predictions labeled as varphi classified by model as varx: 3 times
+Predictions labeled as varpi classified by model as ni: 1 times
+Predictions labeled as varpi classified by model as varu: 1 times
+Predictions labeled as varq classified by model as varx: 3 times
+Predictions labeled as varr classified by model as T: 2 times
+Predictions labeled as varr classified by model as varx: 1 times
+Predictions labeled as vars classified by model as varx: 2 times
+Predictions labeled as vart classified by model as T: 1 times
+Predictions labeled as vart classified by model as ni: 1 times
+Predictions labeled as vartheta classified by model as ni: 3 times
+Predictions labeled as vartheta_2 classified by model as T: 1 times
+Predictions labeled as vartheta_2 classified by model as ni: 1 times
+Predictions labeled as varu classified by model as varu: 1 times
+Predictions labeled as varu classified by model as varx: 1 times
+Predictions labeled as varw classified by model as varu: 2 times
+Predictions labeled as varx classified by model as varx: 2 times
+Predictions labeled as varxi classified by model as T: 1 times
+Predictions labeled as varxi classified by model as ni: 1 times
+Predictions labeled as vary classified by model as varx: 2 times
+Predictions labeled as varz classified by model as vark: 2 times
+Predictions labeled as varz classified by model as varx: 1 times
+Predictions labeled as zeta classified by model as ni: 2 times
+Predictions labeled as { classified by model as T: 1 times
+Predictions labeled as { classified by model as ni: 1 times
+Predictions labeled as } classified by model as ni: 2 times
+
+Warning: 132 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 32, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 85, 86, 87, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 132, 134, 135, 136, 137, 138, 139]
+
+==========================Scores========================================
+ # of classes:    140
+ Accuracy:        0,0244
+ Precision:       0,0306	(132 classes excluded from average)
+ Recall:          0,0286
+ F1 Score:        0,0533	(132 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 140 classes)
+========================================================================
