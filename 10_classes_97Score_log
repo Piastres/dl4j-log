@@ -1,0 +1,734 @@
+"C:\Program Files\Java\jdk1.8.0_144\bin\java" -Xmx5120M "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\lib\idea_rt.jar=65425:C:\Program Files\JetBrains\IntelliJ IDEA 2017.1.1\bin" -classpath C:\Users\Piastres\AppData\Local\Temp\classpath.jar -Dfile.encoding=UTF-8 org.deeplearning4j.transferlearning.vgg16.EditLastLayerOthersFrozen
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/C:/Users/Piastres/.m2/repository/ch/qos/logback/logback-classic/1.1.3/logback-classic-1.1.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/C:/Users/Piastres/.m2/repository/org/slf4j/slf4j-log4j12/1.7.16/slf4j-log4j12-1.7.16.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
+o.d.t.v.EditLastLayerOthersFrozen - 
+
+Loading org.deeplearning4j.transferlearning.vgg16...
+
+
+o.d.z.ZooModel - Using cached model at C:\Users\Piastres\.deeplearning4j\vgg16_dl4j_inference.zip
+o.d.z.ZooModel - Verifying download...
+o.d.z.ZooModel - Checksum local is 3501732770, expecting 3501732770
+o.n.l.f.Nd4jBackend - Loaded [CpuBackend] backend
+o.n.n.NativeOpsHolder - Number of threads used for NativeOps: 2
+o.n.n.Nd4jBlas - Number of threads used for BLAS: 2
+o.n.l.a.o.e.DefaultOpExecutioner - Backend used: [CPU]; OS: [Windows 8.1]
+o.n.l.a.o.e.DefaultOpExecutioner - Cores: [2]; Memory: [4,4GB];
+o.n.l.a.o.e.DefaultOpExecutioner - Blas vendor: [OPENBLAS]
+o.d.n.g.ComputationGraph - Starting ComputationGraph with WorkspaceModes set to [training: NONE; inference: SINGLE]
+o.d.t.v.EditLastLayerOthersFrozen - 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (ConvolutionLayer)         3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (ConvolutionLayer)         64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (SubsamplingLayer)          -,-       0           -                                       [block1_conv2]                
+block2_conv1 (ConvolutionLayer)         64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (ConvolutionLayer)         128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (SubsamplingLayer)          -,-       0           -                                       [block2_conv2]                
+block3_conv1 (ConvolutionLayer)         128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (ConvolutionLayer)         256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (SubsamplingLayer)          -,-       0           -                                       [block3_conv3]                
+block4_conv1 (ConvolutionLayer)         256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (SubsamplingLayer)          -,-       0           -                                       [block4_conv3]                
+block5_conv1 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (ConvolutionLayer)         512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (SubsamplingLayer)          -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (DenseLayer)                        25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (DenseLayer)                        4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (DenseLayer)                4096,1000 4097000     W:{4096,1000}, b:{1,1000}               [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  138357544
+        Trainable Parameters:  138357544
+           Frozen Parameters:  0
+==========================================================================================================================================================================================================================================================
+
+o.d.n.l.FrozenLayer - Gradients for the frozen layer are not set and will therefore will not be updated.Warning will be issued only once per instance
+o.d.t.v.EditLastLayerOthersFrozen - 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+input_1 (InputVertex)                   -,-       -           -                                       -                             
+block1_conv1 (Frozen ConvolutionLayer)  3,64      1792        W:{64,3,3,3}, b:{1,64}                  [input_1]                     
+block1_conv2 (Frozen ConvolutionLayer)  64,64     36928       W:{64,64,3,3}, b:{1,64}                 [block1_conv1]                
+block1_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block1_conv2]                
+block2_conv1 (Frozen ConvolutionLayer)  64,128    73856       W:{128,64,3,3}, b:{1,128}               [block1_pool]                 
+block2_conv2 (Frozen ConvolutionLayer)  128,128   147584      W:{128,128,3,3}, b:{1,128}              [block2_conv1]                
+block2_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block2_conv2]                
+block3_conv1 (Frozen ConvolutionLayer)  128,256   295168      W:{256,128,3,3}, b:{1,256}              [block2_pool]                 
+block3_conv2 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv1]                
+block3_conv3 (Frozen ConvolutionLayer)  256,256   590080      W:{256,256,3,3}, b:{1,256}              [block3_conv2]                
+block3_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block3_conv3]                
+block4_conv1 (Frozen ConvolutionLayer)  256,512   1180160     W:{512,256,3,3}, b:{1,512}              [block3_pool]                 
+block4_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv1]                
+block4_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_conv2]                
+block4_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block4_conv3]                
+block5_conv1 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block4_pool]                 
+block5_conv2 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv1]                
+block5_conv3 (Frozen ConvolutionLayer)  512,512   2359808     W:{512,512,3,3}, b:{1,512}              [block5_conv2]                
+block5_pool (Frozen SubsamplingLayer)   -,-       0           -                                       [block5_conv3]                
+flatten (PreprocessorVertex)            -,-       -           -                                       [block5_pool]                 
+fc1 (Frozen DenseLayer)                 25088,4096102764544   W:{25088,4096}, b:{1,4096}              [flatten]                     
+fc2 (Frozen DenseLayer)                 4096,4096 16781312    W:{4096,4096}, b:{1,4096}               [fc1]                         
+predictions (OutputLayer)               4096,10   40970       W:{4096,10}, b:{1,10}                   [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  134301514
+        Trainable Parameters:  40970
+           Frozen Parameters:  134260544
+==========================================================================================================================================================================================================================================================
+
+o.d.t.v.EditLastLayerOthersFrozen - numExamples: 172
+o.d.t.v.EditLastLayerOthersFrozen - numClasses: 10
+o.d.t.v.EditLastLayerOthersFrozen - trainData 136
+o.d.t.v.EditLastLayerOthersFrozen - testData 34
+o.d.u.p.PlayUIServer - DL4J UI Server started at http://localhost:9000
+o.d.t.v.EditLastLayerOthersFrozen - 
+==========================================================================================================================================================================================================================================================
+VertexName (VertexType)                 nIn,nOut  TotalParams ParamsShape                             Vertex Inputs                 
+==========================================================================================================================================================================================================================================================
+fc2 (InputVertex)                       -,-       -           -                                       -                             
+predictions (OutputLayer)               4096,10   40970       W:{4096,10}, b:{1,10}                   [fc2]                         
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            Total Parameters:  40970
+        Trainable Parameters:  40970
+           Frozen Parameters:  0
+==========================================================================================================================================================================================================================================================
+
+o.d.u.p.PlayUIServer - StatsStorage instance attached to UI: InMemoryStatsStorage(uid=eb15af2a)
+o.d.t.v.EditLastLayerOthersFrozen - Eval stats BEFORE fit.....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 1 times
+Predictions labeled as 0 classified by model as 4: 1 times
+Predictions labeled as 0 classified by model as 9: 1 times
+Predictions labeled as 1 classified by model as 4: 1 times
+Predictions labeled as 1 classified by model as 9: 2 times
+Predictions labeled as 2 classified by model as 1: 1 times
+Predictions labeled as 2 classified by model as 4: 2 times
+Predictions labeled as 3 classified by model as 4: 2 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 3 classified by model as 9: 1 times
+Predictions labeled as 4 classified by model as 0: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 4 classified by model as 9: 1 times
+Predictions labeled as 5 classified by model as 4: 1 times
+Predictions labeled as 5 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 9: 2 times
+Predictions labeled as 6 classified by model as 4: 1 times
+Predictions labeled as 6 classified by model as 9: 2 times
+Predictions labeled as 7 classified by model as 1: 1 times
+Predictions labeled as 7 classified by model as 4: 2 times
+Predictions labeled as 8 classified by model as 4: 1 times
+Predictions labeled as 8 classified by model as 9: 3 times
+Predictions labeled as 9 classified by model as 4: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+Warning: 5 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [2, 3, 6, 7, 8]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,1176
+ Precision:       0,1619	(5 classes excluded from average)
+ Recall:          0,1250
+ F1 Score:        0,1709	(5 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+
+o.d.n.l.FrozenLayer - Frozen layer instance found! Frozen layers are treated as always in test mode. Warning will only be issued once per instance
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 3: 3 times
+Predictions labeled as 1 classified by model as 3: 1 times
+Predictions labeled as 1 classified by model as 4: 2 times
+Predictions labeled as 2 classified by model as 3: 3 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 4: 1 times
+Predictions labeled as 5 classified by model as 8: 2 times
+Predictions labeled as 6 classified by model as 8: 3 times
+Predictions labeled as 7 classified by model as 3: 2 times
+Predictions labeled as 7 classified by model as 4: 1 times
+Predictions labeled as 8 classified by model as 3: 1 times
+Predictions labeled as 8 classified by model as 8: 2 times
+Predictions labeled as 9 classified by model as 3: 2 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 7 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 1, 2, 5, 6, 7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,2667
+ Precision:       0,2929	(7 classes excluded from average)
+ Recall:          0,2667
+ F1 Score:        0,4323	(7 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #0 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 3: 2 times
+Predictions labeled as 0 classified by model as 4: 1 times
+Predictions labeled as 1 classified by model as 4: 3 times
+Predictions labeled as 2 classified by model as 3: 3 times
+Predictions labeled as 3 classified by model as 3: 1 times
+Predictions labeled as 3 classified by model as 4: 1 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 4: 1 times
+Predictions labeled as 5 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 8: 1 times
+Predictions labeled as 6 classified by model as 8: 3 times
+Predictions labeled as 7 classified by model as 3: 1 times
+Predictions labeled as 7 classified by model as 4: 2 times
+Predictions labeled as 8 classified by model as 4: 1 times
+Predictions labeled as 8 classified by model as 8: 2 times
+Predictions labeled as 9 classified by model as 4: 2 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 6 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 1, 2, 6, 7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,2333
+ Precision:       0,2857	(6 classes excluded from average)
+ Recall:          0,2333
+ F1 Score:        0,3382	(6 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #1 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 0: 2 times
+Predictions labeled as 1 classified by model as 3: 1 times
+Predictions labeled as 2 classified by model as 0: 2 times
+Predictions labeled as 2 classified by model as 5: 1 times
+Predictions labeled as 3 classified by model as 0: 1 times
+Predictions labeled as 3 classified by model as 5: 2 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 5: 2 times
+Predictions labeled as 6 classified by model as 8: 1 times
+Predictions labeled as 7 classified by model as 0: 2 times
+Predictions labeled as 7 classified by model as 8: 1 times
+Predictions labeled as 8 classified by model as 5: 1 times
+Predictions labeled as 8 classified by model as 8: 2 times
+Predictions labeled as 9 classified by model as 0: 1 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 5 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [1, 2, 6, 7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,3333
+ Precision:       0,3891	(5 classes excluded from average)
+ Recall:          0,3333
+ F1 Score:        0,4314	(5 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #2 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 5: 1 times
+Predictions labeled as 1 classified by model as 8: 2 times
+Predictions labeled as 2 classified by model as 5: 2 times
+Predictions labeled as 2 classified by model as 8: 1 times
+Predictions labeled as 3 classified by model as 5: 2 times
+Predictions labeled as 3 classified by model as 8: 1 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 2 times
+Predictions labeled as 5 classified by model as 8: 1 times
+Predictions labeled as 6 classified by model as 6: 1 times
+Predictions labeled as 6 classified by model as 8: 2 times
+Predictions labeled as 7 classified by model as 8: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 0: 1 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 5 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [1, 2, 3, 7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,3667
+ Precision:       0,6373	(5 classes excluded from average)
+ Recall:          0,3667
+ F1 Score:        0,5687	(5 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #3 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 1: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 1: 2 times
+Predictions labeled as 2 classified by model as 3: 1 times
+Predictions labeled as 3 classified by model as 1: 1 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 1: 1 times
+Predictions labeled as 5 classified by model as 5: 2 times
+Predictions labeled as 6 classified by model as 6: 2 times
+Predictions labeled as 6 classified by model as 8: 1 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 1: 1 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 9: 1 times
+
+Warning: 1 class was never predicted by the model and was excluded from average precision
+Classes excluded from average precision: [2]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,6667
+ Precision:       0,8056	(1 class excluded from average)
+ Recall:          0,6667
+ F1 Score:        0,7217	(1 class excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #4 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 1 times
+Predictions labeled as 0 classified by model as 9: 2 times
+Predictions labeled as 1 classified by model as 1: 1 times
+Predictions labeled as 1 classified by model as 9: 2 times
+Predictions labeled as 2 classified by model as 1: 1 times
+Predictions labeled as 2 classified by model as 9: 2 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 3 classified by model as 9: 1 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 2 times
+Predictions labeled as 5 classified by model as 9: 1 times
+Predictions labeled as 6 classified by model as 6: 2 times
+Predictions labeled as 6 classified by model as 9: 1 times
+Predictions labeled as 7 classified by model as 9: 3 times
+Predictions labeled as 8 classified by model as 9: 3 times
+Predictions labeled as 9 classified by model as 9: 3 times
+
+Warning: 3 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [2, 7, 8]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,4667
+ Precision:       0,8095	(3 classes excluded from average)
+ Recall:          0,4667
+ F1 Score:        0,6551	(3 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #5 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 1 times
+Predictions labeled as 0 classified by model as 1: 1 times
+Predictions labeled as 0 classified by model as 2: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 1: 1 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 3 classified by model as 3: 1 times
+Predictions labeled as 3 classified by model as 5: 2 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 1: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 5: 2 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 2 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,6333
+ Precision:       0,7775	(2 classes excluded from average)
+ Recall:          0,6333
+ F1 Score:        0,7087	(2 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #6 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 2: 1 times
+Predictions labeled as 5 classified by model as 5: 2 times
+Predictions labeled as 6 classified by model as 6: 1 times
+Predictions labeled as 6 classified by model as 8: 2 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 1: 1 times
+Predictions labeled as 9 classified by model as 2: 1 times
+Predictions labeled as 9 classified by model as 8: 1 times
+
+Warning: 1 class was never predicted by the model and was excluded from average precision
+Classes excluded from average precision: [9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8000
+ Precision:       0,8722	(1 class excluded from average)
+ Recall:          0,8000
+ F1 Score:        0,8415	(1 class excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #7 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 0: 1 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 0: 1 times
+Predictions labeled as 7 classified by model as 7: 2 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 0: 1 times
+Predictions labeled as 9 classified by model as 8: 1 times
+Predictions labeled as 9 classified by model as 9: 1 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8000
+ Precision:       0,8850
+ Recall:          0,8000
+ F1 Score:        0,7974
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #8 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 8: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 8: 3 times
+Predictions labeled as 3 classified by model as 3: 1 times
+Predictions labeled as 3 classified by model as 5: 2 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 4: 1 times
+Predictions labeled as 7 classified by model as 8: 2 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 8: 3 times
+
+Warning: 3 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [2, 7, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,6000
+ Precision:       0,8000	(3 classes excluded from average)
+ Recall:          0,6000
+ F1 Score:        0,7582	(3 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #9 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 1 times
+Predictions labeled as 0 classified by model as 2: 1 times
+Predictions labeled as 0 classified by model as 5: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 6: 1 times
+Predictions labeled as 8 classified by model as 8: 2 times
+Predictions labeled as 9 classified by model as 7: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8667
+ Precision:       0,9000
+ Recall:          0,8667
+ F1 Score:        0,8529
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #10 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 5: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 1: 1 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8667
+ Precision:       0,9250
+ Recall:          0,8667
+ F1 Score:        0,8724
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #11 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 2: 1 times
+Predictions labeled as 0 classified by model as 8: 2 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 2 classified by model as 5: 1 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 3: 1 times
+Predictions labeled as 9 classified by model as 8: 2 times
+
+Warning: 2 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [0, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,7333
+ Precision:       0,8057	(2 classes excluded from average)
+ Recall:          0,7333
+ F1 Score:        0,8342	(2 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #12 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 7: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 5: 1 times
+Predictions labeled as 7 classified by model as 7: 2 times
+Predictions labeled as 8 classified by model as 5: 1 times
+Predictions labeled as 8 classified by model as 8: 2 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8333
+ Precision:       0,9095
+ Recall:          0,8333
+ F1 Score:        0,8467
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #13 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 5: 1 times
+Predictions labeled as 1 classified by model as 1: 1 times
+Predictions labeled as 1 classified by model as 5: 2 times
+Predictions labeled as 2 classified by model as 0: 1 times
+Predictions labeled as 2 classified by model as 5: 2 times
+Predictions labeled as 3 classified by model as 0: 1 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 3 classified by model as 7: 1 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 0: 1 times
+Predictions labeled as 9 classified by model as 5: 2 times
+
+Warning: 3 classes were never predicted by the model and were excluded from average precision
+Classes excluded from average precision: [2, 3, 9]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,5667
+ Precision:       0,7714	(3 classes excluded from average)
+ Recall:          0,5667
+ F1 Score:        0,7224	(3 classes excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #14 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 1: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 1: 1 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 3 classified by model as 1: 1 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 4 classified by model as 1: 2 times
+Predictions labeled as 4 classified by model as 4: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 5: 3 times
+Predictions labeled as 7 classified by model as 0: 1 times
+Predictions labeled as 7 classified by model as 7: 2 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 1: 1 times
+Predictions labeled as 9 classified by model as 8: 1 times
+Predictions labeled as 9 classified by model as 9: 1 times
+
+Warning: 1 class was never predicted by the model and was excluded from average precision
+Classes excluded from average precision: [6]
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,6333
+ Precision:       0,8056	(1 class excluded from average)
+ Recall:          0,6333
+ F1 Score:        0,6767	(1 class excluded from average)
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #15 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 2 times
+Predictions labeled as 0 classified by model as 2: 1 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 1: 1 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 4 classified by model as 4: 2 times
+Predictions labeled as 4 classified by model as 5: 1 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 5: 1 times
+Predictions labeled as 6 classified by model as 6: 2 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 5: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,8333
+ Precision:       0,9000
+ Recall:          0,8333
+ F1 Score:        0,8381
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #16 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 3 classified by model as 8: 1 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 9: 3 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,9667
+ Precision:       0,9750
+ Recall:          0,9667
+ F1 Score:        0,9657
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #17 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 3 times
+Predictions labeled as 3 classified by model as 3: 2 times
+Predictions labeled as 3 classified by model as 5: 1 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 9: 3 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,9667
+ Precision:       0,9750
+ Recall:          0,9667
+ F1 Score:        0,9657
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #18 complete
+o.d.t.v.EditLastLayerOthersFrozen - Evaluate model at iter 0 ....
+o.d.t.v.EditLastLayerOthersFrozen - 
+Predictions labeled as 0 classified by model as 0: 3 times
+Predictions labeled as 1 classified by model as 1: 3 times
+Predictions labeled as 2 classified by model as 2: 2 times
+Predictions labeled as 2 classified by model as 7: 1 times
+Predictions labeled as 3 classified by model as 3: 3 times
+Predictions labeled as 4 classified by model as 4: 3 times
+Predictions labeled as 5 classified by model as 5: 3 times
+Predictions labeled as 6 classified by model as 6: 3 times
+Predictions labeled as 7 classified by model as 7: 3 times
+Predictions labeled as 8 classified by model as 8: 3 times
+Predictions labeled as 9 classified by model as 4: 1 times
+Predictions labeled as 9 classified by model as 9: 2 times
+
+
+==========================Scores========================================
+ # of classes:    10
+ Accuracy:        0,9333
+ Precision:       0,9500
+ Recall:          0,9333
+ F1 Score:        0,9314
+Precision, recall & F1: macro-averaged (equally weighted avg. of 10 classes)
+========================================================================
+o.d.t.v.EditLastLayerOthersFrozen - Epoch #19 complete
+o.d.t.v.EditLastLayerOthersFrozen - Model build complete
+o.d.t.v.EditLastLayerOthersFrozen - Model saved
